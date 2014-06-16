@@ -41,7 +41,6 @@ Session.vim
 .dist
 .tmp
 
-
 /core/clientold/tpl/hbs-tpl.js
 /core/clientold/assets/css
 /core/clientold/assets/fonts
@@ -49,6 +48,7 @@ Session.vim
 /core/client/assets/css
 !/core/client/assets/css/ember-hacks.css
 /core/client/assets/fonts
+
 /core/server/data/export/exported*
 /docs
 /_site
@@ -65,11 +65,6 @@ CHANGELOG.md
 
 # Casper generated files
 /core/test/functional/*.png
-
-config.js
-
-# Built asset files
-/core/built
 
 # Coverage reports
 coverage.html
