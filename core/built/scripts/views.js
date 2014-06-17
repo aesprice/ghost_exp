@@ -668,6 +668,8 @@
         templateName: "preview",
 
         render: function () {
+            var self = this;
+
             this.model = this.collection.get(this.activeId);
             this.$el.html(this.template(this.templateData()));
 
@@ -677,13 +679,14 @@
             });
 
             if (this.model !== undefined) {
-                this.addSubview(new Ghost.View.PostSettings({el: $('.post-controls'), model: this.model})).render();
+                this.model.fetch({ data: { status: 'all', include: 'tags,author' } }).then(function () {
+                    self.addSubview(new Ghost.View.PostSettings({ el: $('.post-controls'), model: self.model })).render();
+                });
             }
 
             Ghost.temporary.initToggles(this.$el);
             return this;
         }
-
     });
 
 }());
@@ -1950,7 +1953,7 @@
             // and then update the placeholder value.
             if (title) {
                 $.ajax({
-                    url: Ghost.paths.apiRoot + '/posts/slug/' + encodeURIComponent(title) + '/',
+                    url: Ghost.paths.apiRoot + '/slugs/post/' + encodeURIComponent(title) + '/',
                     success: function (result) {
                         $postSettingSlugEl.attr('placeholder', result);
                     }
