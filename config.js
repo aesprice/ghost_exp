@@ -49,7 +49,16 @@ config = {
     // Configure your URL and mail settings here
     production: {
         url: 'http://aesprice.azurewebsites.net/',
-        mail: {},
+        mail: {
+            transport: 'SMTP',
+            options: {
+                service: 'Mailgun',
+                auth: {
+                    user: 'postmaster@aesprice.com',
+                    pass: '47l2e2msj-34'
+                }
+            }
+        },
         database: {
             client: 'sqlite3',
             connection: {
